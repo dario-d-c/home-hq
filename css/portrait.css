@@ -1,0 +1,83 @@
+/* ================================================================ Portrait layout
+   html.is-portrait is set by fit() (js/app.js) when the screen is taller than wide (or Look & layout
+   forces it). The stage becomes ~800px wide and as tall as the screen; the side rail becomes a bottom bar
+   and views stack vertically. Landscape is untouched. No :has(), no nesting, no dvh (Safari 12 / WebView). */
+html.is-portrait .stage { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+html.is-portrait .views { grid-row: 1; }
+html.is-portrait .rail { grid-row: 2; flex-direction: row; align-items: stretch; padding: 0; border-right: 0; border-top: 2px solid var(--rule); overflow-x: auto; }
+html.is-portrait .rail-item, html.is-portrait .rail-show { flex: 1 1 0; min-width: 0; height: 78px; margin: 0; padding: 6px 0; }
+html.is-portrait .rail-sitter { margin-top: 0; }
+html.is-portrait .toasts { left: 0; bottom: 20px; }
+html.is-portrait .sheet { max-width: 94%; }
+html.is-portrait .sheet--wide { width: 94%; }
+html.is-portrait .view { padding: 20px; }
+
+/* ---- Today: one tall scrolling column */
+html.is-portrait .home { display: flex; flex-direction: column; gap: 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+html.is-portrait .home > * { flex: none; }
+html.is-portrait .h-clock, html.is-portrait .h-weather, html.is-portrait .h-presence { padding-bottom: 10px; }
+html.is-portrait .h-clock { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+html.is-portrait .h-presence { gap: 6px; }
+html.is-portrait .h-presence .h-who b { font-size: 22px; }
+html.is-portrait .h-presence .h-who small { font-size: 19px; }
+html.is-portrait .h-main { grid-template-rows: auto auto; }
+html.is-portrait .h-hero-slot { min-height: 220px; }
+html.is-portrait .h-lanes { min-height: 200px; }
+html.is-portrait .h-side { display: flex !important; flex-direction: column !important; gap: 16px; }
+html.is-portrait .h-side > * { flex: none !important; min-height: 140px; }
+html.is-portrait .h-side > .h-photo { height: 360px; }
+html.is-portrait .h-meals .hm-dinner b { white-space: normal; }
+
+/* ---- Calendar */
+html.is-portrait .cal-head { flex-wrap: wrap; height: auto; row-gap: 8px; }
+html.is-portrait .cal-title { flex-direction: column; align-items: flex-start; gap: 2px; min-width: 170px; flex: none; }
+html.is-portrait .cal-head .seg { margin-left: auto; }
+html.is-portrait .week { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); }
+
+/* ---- Chores (tabbed lanes): 3 columns × rows */
+html.is-portrait .t-head { flex-wrap: wrap; row-gap: 10px; }
+html.is-portrait .ch-lanes { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); }
+/* ---- Chores (All day, portrait = stacked person sections; markup from tasks.js) */
+.adp { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.adp-sec { background: var(--card); border-radius: 16px; overflow: hidden; }
+.adp-sec header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--c); color: var(--c-ink); }
+.adp-sec header b { flex: 1; font-size: 22px; font-weight: 800; text-transform: uppercase; font-stretch: 62%; }
+.adp-sec header .avatar { background: var(--c-ink); color: var(--c); }
+.adp-row { display: flex; gap: 10px; padding: 8px 12px; border-top: 1px solid var(--line); align-items: flex-start; }
+.adp-row.is-now { background: rgb(var(--c-rgb) / .08); }
+.adp-row > span { width: 128px; flex: none; padding-top: 10px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--mute); }
+.adp-row.is-now > span { color: var(--ink); }
+.adp-row > div { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; }
+.adp-row .cha { width: auto; flex: 0 1 auto; min-height: 48px; }
+.adp-row .cha-t { font-size: 17px; }
+
+/* ---- Shopping: add + usuals on top, list below */
+html.is-portrait .shop { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; }
+html.is-portrait .s-head { flex-wrap: wrap; }
+html.is-portrait .s-side { grid-row: 2; max-height: 330px; overflow-y: auto; }
+html.is-portrait .s-list { grid-row: 3; }
+
+/* ---- Meals week (portrait = days as rows; markup from meals.js) */
+html.is-portrait .ml-head { flex-wrap: wrap; gap: 10px; }
+html.is-portrait .ml-head h1 { font-size: 40px; }
+
+/* ---- Bottom nav: 5 primary tabs + More (Sitter, Slideshow, Edit and Settings live in More) */
+html.is-portrait .rail { overflow: hidden; padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px)); gap: 2px; border-top: 1px solid var(--line); background: var(--raised); }
+html.is-portrait .rail-item[data-go="photos"], html.is-portrait .rail-item[data-go="control"], html.is-portrait .rail-item[data-go="agents"],
+html.is-portrait #railSitter, html.is-portrait #railShow, html.is-portrait #railEdit, html.is-portrait #railClock { display: none !important; }
+html.is-portrait .rail-item, html.is-portrait .rail-show { height: 68px; border-radius: 18px; gap: 4px; justify-content: center; }
+html.is-portrait .rail-item svg, html.is-portrait .rail-show svg { width: 28px; height: 28px; }
+html.is-portrait .rail-item span, html.is-portrait .rail-show span { font-size: 13px; letter-spacing: .03em; }
+html.is-portrait .rail-item.is-active { background: var(--tint); color: var(--tint-ink); }
+html.is-portrait .em-bar { bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
+
+/* ---- Phones (narrow stage): roomier, single-column where columns got squeezed */
+html.is-phone .view { padding: 16px 14px; }
+html.is-phone .h-clock .num, html.is-phone .h-time { font-size: 64px; }
+html.is-phone .h-lanes { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; grid-auto-rows: auto; gap: 10px; }
+html.is-phone .ch-lanes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+html.is-phone .week { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html.is-phone .h-side > .h-photo { height: 260px; }
+html.is-phone .rail-item span { font-size: 12px; }
+html.is-phone .em-bar button { padding: 9px 11px; font-size: 14px; }
+html.is-portrait .toasts { bottom: calc(110px + env(safe-area-inset-bottom, 0px)); } html.is-portrait.edit-mode .toasts { bottom: 180px; }

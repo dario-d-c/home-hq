@@ -1,0 +1,47 @@
+/* Phones (html.is-phone, set by fit()): no scaled stage. A real device-width app shell sized to the visible viewport,
+   the views scroll, and the tab bar is fixed to the bottom of the screen. Fallbacks: 100vh → -webkit-fill-available → 100dvh → JS --app-h. */
+/* Phones: the document scrolls (no fixed-height shell, no inner scroller). Only the tab bar is fixed, at the bottom of the
+   layout viewport; the page is padded so nothing hides behind it. Content may run under iOS's translucent toolbars. */
+html.is-phone, html.is-phone body { height: auto; min-height: 100%; overflow: visible; overflow-x: hidden; }
+html.is-phone .stage { position: static; width: auto; height: auto; margin: 0; transform: none !important; display: block; overflow: visible; }
+html.is-phone .views { position: static; overflow: visible; padding-top: 12px; padding-top: max(12px, env(safe-area-inset-top, 0px)); padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+html.is-phone .view { position: static; display: none; content-visibility: visible; }
+html.is-phone .view.is-active { display: block; }
+html.is-phone .view, html.is-phone .view > *, html.is-phone .home, html.is-phone .agenda, html.is-phone .week, html.is-phone .adp, html.is-phone .s-list, html.is-phone .s-side,
+html.is-phone .cal-body, html.is-phone .cal-day, html.is-phone .grid-scroll { height: auto !important; max-height: none !important; overflow: visible !important; }
+html.is-phone .view { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+html.is-phone .rail { position: fixed; left: 0; right: 0; bottom: 0; width: 100%; box-sizing: border-box; min-height: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding: 4px 4px env(safe-area-inset-bottom, 0px); display: flex; flex-direction: row; align-items: stretch; z-index: 40; border-right: 0; border-top: 1px solid var(--line); background: var(--raised); }
+html.is-phone .rail-item, html.is-phone .rail-show { flex: 1 1 0; min-width: 0; height: 60px; margin: 0; padding: 4px 0; border-radius: 16px; }
+html.is-phone .rail-item svg, html.is-phone .rail-show svg { width: 24px; height: 24px; }
+html.is-phone .rail-item span, html.is-phone .rail-show span { font-size: 11px; letter-spacing: .02em; }
+/* sheets lock the page behind them */
+html.is-phone.sheet-lock body { position: fixed; left: 0; right: 0; top: var(--lock-y, 0); }
+html.is-phone .em-bar { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+html.is-phone .toasts { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+html.is-phone.edit-mode .toasts { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
+html.is-phone .h-clock .num, html.is-phone .h-time { font-size: 56px; }
+/* calendar header on phones: title row (‹ title › +), then the view switcher full width */
+html.is-phone .cal-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; height: auto; }
+html.is-phone .cal-head .cal-title { flex: 1 1 0; min-width: 0; }
+html.is-phone .cal-head .seg { order: 10; flex: 1 0 100%; margin: 0; display: flex; }
+html.is-phone .cal-head .seg > * { flex: 1; padding-left: 4px; padding-right: 4px; font-size: 13px; }
+html.is-phone .cal-head button, html.is-phone .cal-head .icon-btn { flex: none; }
+html.is-phone .cal-title h1, html.is-phone .cal-title .serif { font-size: 32px; }
+html.is-phone .view .cal-head { flex-wrap: wrap !important; row-gap: 10px; height: auto !important; }
+html.is-phone .view .cal-head .cal-title { flex: 1 1 0 !important; min-width: 0 !important; }
+html.is-phone .view .cal-head .icon-btn, html.is-phone .view .cal-head .fab { width: 44px; height: 44px; flex: none; }
+html.is-phone .view .cal-head [data-today] { margin-right: 0; min-height: 44px; padding: 0 12px; }
+html.is-phone .view .cal-head .seg { order: 10; flex: 1 0 100% !important; margin-left: 0 !important; }
+html.is-phone .view .cal-head .seg button { flex: 1; min-height: 40px; padding: 0 4px; font-size: 13px; }
+html.is-phone .view .cal-head .cal-title .serif { font-size: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html.is-phone .view .cal-head .cal-title .label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; }
+html.is-phone #sheetLayer, html.is-phone .sheet-layer, html.is-phone .ss, html.is-phone .ss-ov, html.is-phone .sitter-ov, html.is-phone .night-dim { position: fixed !important; }
+html.is-phone #sheetLayer { left: 0; top: 0; right: 0; bottom: 0; }
+html.is-phone .sheet { max-height: 92%; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+html.is-phone .toasts { position: fixed !important; }
+html.is-phone .h-side > * { align-self: stretch !important; width: auto !important; margin-left: 0 !important; margin-right: 0 !important; }
+/* Today header on phones: date line first, then the time — always the first thing on the page */
+html.is-phone .home > .h-clock { order: -1; display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; gap: 2px; padding-top: 4px; visibility: visible !important; }
+html.is-phone .h-clock .h-date { order: -1; font-size: 17px; letter-spacing: .01em; }
+html.is-phone .h-clock .h-date b { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin-right: 4px; }

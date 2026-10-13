@@ -1,0 +1,2 @@
+EDIT_PASSCODE=change-me # family passcode for the editor (used when Cloudflare Access is not set up)
+FRAME_KEY=replace-with-a-long-random-string # wall frame opens https://<your-worker>/?key=<FRAME_KEY>; generate: openssl rand -hex 24

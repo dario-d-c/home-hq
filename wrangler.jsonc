@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "home-hq",
+  "main": "./worker/index.js",
+  "compatibility_date": "2026-09-30",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  // Workers AI (photo/PDF import). Provisioned automatically.
+  "ai": { "binding": "AI" },
+  // Calendar sync + weather refresh every 15 minutes
+  "triggers": { "crons": ["*/15 * * * *"] },
+  // All family data lives in one KV namespace. The Deploy button / `wrangler deploy` creates it for you.
+  "kv_namespaces": [
+    { "binding": "DATA_KV" }
+  ],
+  "vars": {
+    // Optional Cloudflare Access (email login). Leave empty to use the simple EDIT_PASSCODE login.
+    "ACCESS_TEAM_DOMAIN": "",
+    "ACCESS_AUD": ""
+  }
+  // Secrets (set with `npx wrangler secret put NAME` or in the dashboard): EDIT_PASSCODE, FRAME_KEY
+}

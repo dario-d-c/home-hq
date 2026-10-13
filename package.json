@@ -1,0 +1,39 @@
+{
+  "name": "home-hq",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && wrangler deploy",
+    "dev:worker": "vite build && wrangler dev -c wrangler.dev.jsonc"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^4.10.38",
+    "vite": "^8.3.1",
+    "wrangler": "^4.145.0"
+  },
+  "dependencies": {
+    "ical.js": "^2.2.1"
+  },
+  "license": "MIT",
+  "description": "A family wall dashboard (calendar, chores, meals, shopping) for photo frames, tablets and phones, on Cloudflare Workers.",
+  "cloudflare": {
+    "bindings": {
+      "EDIT_PASSCODE": {
+        "description": "Family passcode for editing (any phrase you like). Used when Cloudflare Access is not set up."
+      },
+      "FRAME_KEY": {
+        "description": "Long random key for the wall frame/kiosk. Generate with `openssl rand -hex 24`, then open `https://<your-worker>/?key=<FRAME_KEY>` on the frame."
+      },
+      "ACCESS_TEAM_DOMAIN": {
+        "description": "Optional. Your Cloudflare Access team domain, e.g. `https://myfamily.cloudflareaccess.com`. Leave empty for passcode login."
+      },
+      "ACCESS_AUD": {
+        "description": "Optional. Audience (AUD) tag of the Access application protecting `/auth`."
+      }
+    }
+  }
+}

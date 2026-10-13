@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F6F3EE">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Home HQ">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="manifest" href="/edit.webmanifest">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="icon" href="/icon-192.png">
+  <title>Home HQ</title>
+  <link rel="stylesheet" href="./edit.css">
+  <link rel="stylesheet" href="./theme.css">
+</head>
+<body>
+  <section id="login" class="login" hidden>
+    <div class="login-card">
+      <div class="logo">🏡</div>
+      <h1>Home HQ</h1>
+      <p>Enter the family passcode to update the kitchen screen.</p>
+      <form id="loginForm">
+        <input id="pass" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Passcode" required>
+        <button class="btn primary big" type="submit">Unlock</button>
+        <p id="loginErr" class="err" role="alert"></p>
+      </form>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <header class="top">
+      <h1 id="title">Calendar</h1>
+      <div id="status" class="status" aria-live="polite"></div>
+    </header>
+    <main id="list"></main>
+    <div class="fabs" id="fabs">
+      <button id="aiFab" class="fab fab-ai" type="button" aria-label="Add from photo or text"><span aria-hidden="true">✨</span></button>
+      <button id="add" class="fab" type="button"><span aria-hidden="true">＋</span><span id="addLabel">Add</span></button>
+    </div>
+    <nav class="tabbar" id="tabs" aria-label="Sections"></nav>
+  </div>
+
+  <dialog id="sheet" class="sheet">
+    <form id="form" method="dialog" novalidate>
+      <div class="sheet-head">
+        <button type="button" class="link" id="cancel">Cancel</button>
+        <h2 id="formTitle"></h2>
+        <button type="submit" class="link strong" id="saveBtn">Save</button>
+      </div>
+      <div class="sheet-body">
+        <div id="fields"></div>
+        <div id="extra"></div>
+        <button type="submit" class="btn primary big sheet-save" id="saveBottom">Save</button>
+        <button type="button" class="btn danger big" id="del">Delete</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="ai" class="sheet">
+    <div class="ai-wrap">
+      <div class="sheet-head">
+        <button type="button" class="link" id="aiCancel">Cancel</button>
+        <h2 id="aiTitle">Add from photo or text</h2>
+        <button type="button" class="link strong" id="aiGo">Read it</button>
+      </div>
+      <div class="sheet-body" id="aiBody"></div>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="./edit.js"></script>
+</body>
+</html>

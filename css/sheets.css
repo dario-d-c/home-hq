@@ -1,0 +1,67 @@
+/* Sheets fit the visible screen on every size (scaled stage, iOS toolbars, keyboard).
+   --sv-top / --sv-h are set by App.fitSheet in the sheet layer's coordinates. */
+.sheet {
+  display: flex; flex-direction: column; overflow: hidden;
+  top: calc(var(--sv-top, 0px) + var(--sv-h, 100%) / 2);
+  max-height: min(720px, calc(var(--sv-h, 100%) - 32px));
+}
+.sheet-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.sheet-pad { --sp-x: 36px; }
+/* sticky title (close button sits above it, outside the scroller) */
+.sheet-body > .sheet-pad > .sheet-h:first-child, .sheet-body > .sheet-pad > .eyebrow:first-child + .sheet-h, .sheet-body > .sheet-pad > .sheet-h {
+  position: sticky; top: 0; z-index: 1; background: var(--paper);
+  margin-left: calc(-1 * var(--sp-x)); margin-right: calc(-1 * var(--sp-x));
+  padding: 8px calc(var(--sp-x) + 56px) 8px var(--sp-x);
+}
+/* sticky primary buttons */
+.sheet-body .sheet-actions:last-child {
+  position: sticky; bottom: calc(-1 * var(--sp-b, 32px)); z-index: 1; background: var(--paper);
+  margin-left: calc(-1 * var(--sp-x)); margin-right: calc(-1 * var(--sp-x)); margin-bottom: calc(-1 * var(--sp-b, 32px));
+  padding: 12px var(--sp-x) var(--sp-b, 32px); box-shadow: 0 -1px 0 rgba(0, 0, 0, .07);
+}
+/* embedded editor sheets: header + iframe that scrolls itself */
+.sheet.sheet--embed { height: min(900px, calc(var(--sv-h, 100vh) - 24px)); max-height: calc(var(--sv-h, 100vh) - 24px); }
+.sheet--embed .sheet-body { display: flex; flex-direction: column; overflow: hidden; }
+.sheet--embed .em-frame { min-height: 0; }
+
+html.is-phone .sheet-pad { --sp-x: 16px; --sp-b: calc(20px + env(safe-area-inset-bottom, 0px)); }
+/* phones: bottom sheet glued to the bottom of what's visible (rides above the keyboard) */
+html.is-phone .sheet {
+  top: auto !important; bottom: calc(100% - var(--sv-top, 0px) - var(--sv-h, 100%));
+  max-height: calc(var(--sv-h, 100%) - 10px - env(safe-area-inset-top, 0px)) !important;
+  transform: translate(-50%, 6%);
+}
+html.is-phone .sheet-layer.is-open .sheet { transform: translate(-50%, 0); }
+html.is-phone .sheet.sheet--embed { height: calc(var(--sv-h, 100%) - 10px - env(safe-area-inset-top, 0px)); }
+/* native Calendar sync sheet */
+.cs2-list { display: flex; flex-direction: column; gap: 10px; margin: 6px 0 14px; }
+.cs2-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+.cs2-row.is-bad { box-shadow: inset 0 0 0 1.5px rgba(179,64,47,.45); }
+.cs2-dots { display: flex; gap: 3px; flex: none; } .cs2-dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.cs2-main { flex: 1; min-width: 0; text-align: left; display: flex; flex-direction: column; gap: 2px; background: none; border: 0; padding: 0; font: inherit; color: inherit; }
+.cs2-main b { font-size: 18px; } .cs2-main span { opacity: .75; } .cs2-main small { opacity: .6; font-size: 14px; overflow-wrap: anywhere; }
+.cs2-row.is-bad small { color: #b3402f; opacity: 1; }
+.cs2-ic { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,.06); border: 0; font-size: 18px; flex: none; }
+.cs2-bar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 8px 0; } .cs2-last { opacity: .65; font-size: 15px; }
+.cs2-help { margin: 12px 0; font-size: 15px; } .cs2-help summary { cursor: pointer; font-weight: 600; } .cs2-help p { margin: 8px 0; }
+.cs2-hint { opacity: .7; } .cs2-err { color: #b3402f; font-weight: 600; } .cs2-err a { color: inherit; text-decoration: underline; } .cs2-busy { opacity: .75; font-style: italic; }
+.cs2-f { display: block; margin: 12px 0; } .cs2-f .label { display: block; margin-bottom: 6px; }
+.cs2-f input, .cs2-f textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 17px; min-height: 48px; padding: 10px 12px; border-radius: 12px; border: 1.5px solid rgba(0,0,0,.12); background: rgba(255,255,255,.65); color: inherit; }
+.cs2-who { display: flex; flex-wrap: wrap; gap: 8px; } .cs2-who .chip { display: inline-flex; align-items: center; gap: 8px; }
+.cs2-who .chip .cs2-pd { width: 10px; height: 10px; border-radius: 50%; background: var(--c, #888); }
+.cs2-who .chip.is-on { background: var(--c, #333); color: #fff; } .cs2-who .chip.is-on .cs2-pd { background: #fff; }
+.cs2 .chip, .cs2 .btn, .cs2 button { transition: none; -webkit-tap-highlight-color: transparent; }
+.cs2 .btn:active, .cs2 .chip:active { transform: none; }
+.cs2-del { width: 100%; margin-top: 10px; background: transparent; color: #b3402f; box-shadow: inset 0 0 0 1.5px rgba(179,64,47,.5); }
+.cs2-del.is-armed { background: #b3402f; color: #fff; }
+/* phones: sheets with fields are fixed-height full-screen pages; the keyboard only pads the inside (set once after it settles) */
+html.is-phone .sheet.sheet--full {
+  top: calc(var(--vv-top, 0px) + env(safe-area-inset-top, 0px) + 6px) !important; bottom: auto !important;
+  height: calc(var(--lh, 100vh) - env(safe-area-inset-top, 0px) - 6px) !important; max-height: none !important;
+  transform: translateX(-50%) !important; transition: none !important; animation: none !important;
+  padding-bottom: var(--kb, 0px) !important; border-radius: 20px 20px 0 0;
+}
+html.is-phone .sheet--full .sheet-body { overflow-anchor: none; }
+html.is-phone .sheet--full *, html.is-phone .sheet--full { transition-property: background-color, color, border-color, box-shadow !important; }
+.cs2-msg { min-height: 1.4em; margin: 4px 0 8px; }
+.sheet input, .sheet textarea, .sheet select { font-size: max(16px, 1em); }

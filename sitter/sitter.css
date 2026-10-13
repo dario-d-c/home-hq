@@ -1,0 +1,50 @@
+:root { --bg: #F6F3EE; --card: #fff; --ink: #16161A; --muted: #6E6A64; --line: #E7E2DA; --ok: #12B76A; --next: #2D5BFF; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 20px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: calc(18px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(40px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left)); }
+h1 { font-size: 34px; margin: 0; letter-spacing: -.02em; }
+h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 26px 4px 10px; }
+.muted { color: var(--muted); }
+.date { color: var(--muted); font-size: 18px; margin-top: 2px; }
+.who { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 0; }
+.who button { border: 0; border-radius: 999px; padding: 10px 18px; font: inherit; font-weight: 700; font-size: 18px; background: var(--chip, #E9E4DC); color: var(--ink); min-height: 48px; }
+.who button.on { background: var(--c); color: #fff; }
+.tl { display: flex; flex-direction: column; gap: 10px; }
+.it { display: flex; align-items: center; gap: 14px; background: var(--card); border-radius: 18px; padding: 14px 16px; border: 3px solid transparent; }
+.it .t { width: 98px; flex: none; font-weight: 800; font-size: 24px; font-variant-numeric: tabular-nums; }
+.it .t small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); }
+.it .x { flex: 1; min-width: 0; }
+.it .x b { display: block; font-size: 22px; }
+.it .x span { display: block; color: var(--muted); font-size: 17px; white-space: pre-wrap; }
+.it .x em { display: block; color: var(--ok); font-style: normal; font-weight: 700; font-size: 16px; }
+.it.next { border-color: var(--next); box-shadow: 0 6px 20px rgba(45,91,255,.18); }
+.it.next .t::before { content: 'NEXT'; display: block; font-size: 12px; letter-spacing: .1em; color: var(--next); }
+.it.done { opacity: .6; }
+.it.past:not(.done) .t { color: var(--muted); }
+.done-btn { flex: none; border: 0; border-radius: 14px; min-width: 84px; min-height: 56px; font: inherit; font-weight: 800; background: var(--chip, #E9E4DC); color: var(--ink); }
+.it.done .done-btn { background: var(--ok); color: #fff; }
+.card { background: var(--card); border-radius: 18px; padding: 16px 18px; white-space: pre-wrap; }
+.beds { display: grid; gap: 8px; }
+.bed { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: 16px; padding: 12px 16px; font-size: 22px; }
+.bed i { width: 14px; height: 14px; border-radius: 50%; flex: none; }
+.bed b { flex: 1; }
+.contacts a { color: var(--next); font-weight: 700; text-decoration: none; }
+.close { position: fixed; right: 20px; bottom: 20px; border: 0; border-radius: 999px; padding: 16px 28px; font: inherit; font-weight: 800; background: var(--deep, #16161A); color: var(--on-deep, #fff); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.empty { text-align: center; padding: 40px 10px; }
+/* frame (1280×800): two columns */
+body.frame main { max-width: none; padding: 28px 36px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 0 36px; }
+body.frame header { grid-column: 1 / -1; }
+@media (orientation: portrait) { body.frame main { grid-template-columns: 1fr; padding: 22px; } }
+
+.card, .it, .bed { box-shadow: 0 1px 2px rgba(60,40,20,.06), 0 6px 18px rgba(60,40,20,.06); }
+/* phones: time on its own line above the title, Done button on the right — titles get the full width */
+@media (max-width: 520px) {
+  .it { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; row-gap: 2px; align-items: center; padding: 12px 14px; }
+  .it .t { width: auto; grid-column: 1; font-size: 15px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .it .t small { display: inline; font-size: 13px; }
+  .it.next .t::before { display: inline; font-size: 11px; }
+  .it .x { grid-column: 1; }
+  .it .x b { font-size: 18px; line-height: 1.25; }
+  .it .x span { font-size: 15px; }
+  .it > button, .it > .btn, .it > :last-child:not(.x):not(.t) { grid-column: 2; grid-row: 1 / span 2; }
+}

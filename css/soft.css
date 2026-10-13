@@ -1,0 +1,29 @@
+/* Soft theme layer — loaded last. Routes remaining hard colours through theme tokens. */
+.rail-item.is-active { background: transparent; color: var(--tint-ink); }
+.rail-item.is-active::before { content: ''; position: absolute; left: 8px; right: 8px; top: 6px; bottom: 6px; border-radius: 16px; background: var(--tint); z-index: -1; }
+.rail-item { z-index: 0; }
+.rail-item.is-active:active { background: transparent; }
+.h-time, .h-time *, .h-clock .num, .h-temp, .h-weather .num, h1, h2, .h-hero-count { color: var(--head); }
+.h-hr-i, .h-wx-i, .h-weather svg { color: var(--icon); }
+.h-hr.is-wet .h-hr-i { color: var(--wet); }
+/* highlight card: soft tint by default; .hl-bold restores the deep card */
+.h-hero--empty { background: var(--hl-bg); color: var(--hl-ink); box-shadow: var(--shadow); }
+.h-hero--empty .h-hero-title i { color: var(--hl-sub); }
+html:not(.hl-bold) .h-hero:not(.h-hero--empty) { background: var(--hl-bg); color: var(--hl-ink); border-left: 8px solid var(--c); }
+html:not(.hl-bold) .h-hero:not(.h-hero--empty) .h-hero-foot .dots i { box-shadow: 0 0 0 3px var(--hl-bg); }
+/* person lanes: thinner, muted bars */
+.h-lane { border-top: 3px solid var(--c); }
+.h-lane, .h-lane-head b { color: var(--ink); }
+.h-rt-now.is-late, .h-st-row.is-warn { color: var(--warn); }
+.rt-del { color: var(--bad); }
+.rt-hol { background: var(--pastel-3); border-color: var(--pastel-3); }
+.rt-chip.is-on { background: var(--c); border-color: var(--c); color: var(--c-ink); }
+/* banners: pastel tints */
+.h-ban { background: var(--pastel-1); color: var(--ink); box-shadow: none; }
+.h-ban--off { background: var(--pastel-3); box-shadow: none; }
+.h-ban--cd { background: var(--pastel-2); box-shadow: none; }
+.h-ban--bday { background: var(--pastel-1); color: var(--hl-ink); border: 2px solid var(--c); }
+/* calendar weather + misc */
+.wxb svg, .wxs-h svg { color: var(--icon); }
+.ok, .is-ok { color: var(--ok); }
+.chip.is-on, .seg button.is-on { background: var(--tint); color: var(--tint-ink); }

@@ -1,0 +1,85 @@
+/* Editor ↔ dashboard: one theme system. Tokens come from js/themes.js (same palettes, same values as the frame). */
+:root { --sans: 'Archivo', 'Roboto', system-ui, -apple-system, sans-serif; --serif: 'Instrument Serif', Georgia, serif; --label: 'Archivo', system-ui, sans-serif; --r: 20px; --r-s: 14px;
+  --bg: var(--paper, #F3EBDD); --raised: #FFFDF8; --chip: #EFE4D2; --deep: #5B4130; --on-deep: #F8EFE0; --rule: #CDBBA0; --tint: #EADFCD; --tint-ink: #5B4130;
+  --shadow: 0 1px 2px rgba(60,40,20,.06), 0 6px 18px rgba(60,40,20,.07); --danger: var(--bad, #A33A2E); }
+html[data-theme="dark"] { color-scheme: dark; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); }
+input, select, textarea, button { font-family: inherit; color: inherit; }
+input, select, textarea { font-size: 16px !important; }
+h1, .top h1, .sheet-head h2, #aiTitle, #formTitle { font-family: var(--serif); font-weight: 400; color: var(--head, var(--ink)); }
+.top { background: var(--bg); border-bottom-color: var(--line); }
+.group, .group span:first-child, .field > span { color: var(--mute, var(--muted)); }
+/* cards + rows */
+.cards, .card, .ai-card, .school-card, .trip-card, .meal-day, .th-card, .em-row { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); }
+.row, .field { border-color: var(--line); }
+.field { background: var(--card); }
+.row-title { color: var(--ink); } .row-sub, .hint { color: var(--mute, var(--muted)); }
+.row-del { background: var(--bad, #A33A2E); color: var(--on-deep); }
+.trash, .row-trash, button[data-del], .del-btn { background: var(--pastel-1, var(--chip)) !important; color: var(--bad, #A33A2E) !important; }
+/* buttons */
+.btn { background: var(--chip); color: var(--ink); border-radius: 999px; }
+.btn.primary, .fab { background: var(--deep); color: var(--on-deep); box-shadow: var(--shadow); }
+.btn.danger { background: transparent; color: var(--bad, #A33A2E); box-shadow: inset 0 0 0 1.5px var(--bad, #A33A2E); }
+.fab-ai { background: var(--accent); color: var(--on-deep); }
+.link, a { color: var(--accent); }
+/* pill nav (bottom tab bar) like the frame rail */
+.tabbar { background: var(--raised); border-top: 1px solid var(--line); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.tabbar button { color: var(--mute, var(--muted)); font-family: var(--label); font-weight: 700; font-stretch: 75%; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; position: relative; z-index: 0; }
+.tabbar button.on { color: var(--tint-ink); }
+.tabbar button.on::before { content: ''; position: absolute; left: 14%; right: 14%; top: 4px; bottom: 4px; border-radius: 16px; background: var(--tint); z-index: -1; }
+.tabbar button.on svg { stroke: currentColor; }
+/* chips + segmented controls */
+.chip { background: var(--chip); border-color: transparent; color: var(--ink); }
+.chip.on { background: var(--tint); border-color: transparent; color: var(--tint-ink); }
+.seg-ctl, .pick3, .segbtn-row { background: var(--chip); }
+.seg-ctl button.on, .pick3 .on, .segbtn.on { background: var(--raised); color: var(--ink); box-shadow: var(--shadow); }
+.date-pill, .badge { background: var(--chip); color: var(--ink-2, var(--ink)); }
+.badge.ok { background: var(--pastel-2, var(--chip)); color: var(--ok, #4F7A4A); } .badge.err { background: var(--pastel-1, var(--chip)); color: var(--bad, #A33A2E); }
+/* toggles */
+.switch input { background: var(--line); }
+.switch input::after { background: var(--raised); }
+.switch input:checked { background: var(--deep); }
+/* sheets */
+.sheet { background: var(--bg); color: var(--ink); border-radius: 24px 24px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.sheet::backdrop { background: rgba(30, 20, 10, .38); }
+.sheet-head { background: var(--bg) !important; border-bottom: 1px solid var(--line); }
+.sheet-head .link { color: var(--accent); } .sheet-head .link.strong { color: var(--deep); font-weight: 800; }
+/* toast, tip, empty states, skeletons */
+.toast { background: var(--deep); color: var(--on-deep); border-radius: 999px; box-shadow: var(--shadow); }
+.scan-tip { background: var(--pastel-1, var(--chip)) !important; color: var(--ink); border: 0 !important; box-shadow: none !important; }
+.scan-tip button { color: var(--mute, var(--muted)); }
+.empty h3 { font-family: var(--serif); font-weight: 400; font-size: 28px; color: var(--head, var(--ink)); } .empty p { color: var(--mute, var(--muted)); }
+.skel, .reading-bar { background: var(--chip); } .reading-bar i, .reading-bar span { background: var(--accent); }
+/* scan + review */
+.ai-bulk, .rv-head { background: var(--raised); box-shadow: var(--shadow); border-radius: var(--r); }
+.rv-row, .ai-item, .sy-row, .meal-item, .mrow, .plan-row, .w-step { border-color: var(--line); }
+.rv-foot { background: linear-gradient(transparent, var(--bg) 40%); }
+.scan-row, .scan-btn { background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
+.scan-btn { background: var(--deep); color: var(--on-deep); }
+/* misc hard colours from older styles */
+.avatar { box-shadow: 0 0 0 2px var(--card); }
+.login { background: var(--bg); } .login-card { background: var(--card); box-shadow: var(--shadow); border-radius: 24px; }
+.stepper button { background: var(--chip); color: var(--ink); }
+.w-tok, code { color: var(--ink); }
+html.embed .fabs { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+.pick { background: transparent !important; box-shadow: none !important; }
+.pick label, .pick button[data-paste] { background: var(--card); color: var(--ink); }
+.pick label svg, .pick button svg { color: var(--accent); stroke: var(--accent); }
+.sheet-head button:focus { outline: none; }
+/* embedded in the dashboard: the editor sheet IS the dashboard sheet — full height, no page behind, one header */
+html.embed .sheet { top: 0 !important; margin-top: 0 !important; max-height: 100% !important; height: 100% !important; border-radius: 0; box-shadow: none; }
+html.embed .sheet::backdrop { background: var(--bg); }
+html.embed .scan-tip { display: none !important; }
+.big-emoji { font-size: 40px !important; line-height: 1.1; }
+/* recipes */
+.rcp-img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 10px; display: block; }
+.rcp-acts { display: grid; gap: 8px; margin: 6px 0 12px; }
+.rcp-import, .rcp-link { width: 100%; margin: 6px 0 10px; }
+.rcp-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; }
+.rcp-row input { width: 22px; height: 22px; flex: none; margin-top: 2px; }
+.rcp-row span { display: flex; flex-direction: column; min-width: 0; }
+.rcp-row small { color: var(--muted); overflow-wrap: anywhere; }
+#rcpStore { display: flex; flex-wrap: wrap; gap: 8px; }
+.rcp-row input { accent-color: var(--accent, #8a5a3c); }
+.cd-sw { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; }
+.cd-sw > span { display: flex; flex-direction: column; min-width: 0; } .cd-sw small { color: var(--muted); }

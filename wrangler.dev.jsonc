@@ -1,0 +1,10 @@
+// Local-only config: same as wrangler.jsonc minus Workers AI (which needs a Cloudflare login).
+// `npm run dev:worker` uses it. Photo/PDF import is unavailable locally; everything else works.
+{
+  "name": "home-hq-dev",
+  "main": "./worker/index.js",
+  "compatibility_date": "2026-09-30",
+  "assets": { "directory": "./dist", "binding": "ASSETS", "run_worker_first": true },
+  "kv_namespaces": [{ "binding": "DATA_KV", "id": "local-dev" }],
+  "vars": { "ACCESS_TEAM_DOMAIN": "", "ACCESS_AUD": "" }
+}
