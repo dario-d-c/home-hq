@@ -76,11 +76,13 @@ Data starts empty: no sample family is shipped.
 ## Hardware suggestions
 Any screen with a modern browser works. Some ideas (links are placeholders, so add your own):
 - **10" Android photo frame** (what the original project hacked). See Wes Bos's
-  [frame guides](https://github.com/wesbos/photo-frame-dashboard#readme): [AFFILIATE_LINK_FRAME]
-- **Amazon Fire HD 10** with a kiosk browser: [AFFILIATE_LINK_FIRE]
-- **Older iPad** in Guided Access, on a wall mount: [AFFILIATE_LINK_IPAD_MOUNT]
-- **Slim USB-C power cable / in-wall power kit:** [AFFILIATE_LINK_CABLE]
-- **Adhesive or screw wall mount:** [AFFILIATE_LINK_MOUNT]
+
+_As an Amazon Associate I earn from qualifying purchases._
+  [frame guides](https://github.com/wesbos/photo-frame-dashboard#readme): [shop on Amazon](https://www.amazon.com/s?k=10+inch+touchscreen+digital+photo+frame&tag=dario0b1-20)
+- **Amazon Fire HD 10** with a kiosk browser: [shop on Amazon](https://www.amazon.com/s?k=fire+hd+10+tablet&tag=dario0b1-20)
+- **Older iPad** in Guided Access, on a wall mount: [shop on Amazon](https://www.amazon.com/s?k=ipad+picture+frame+wall+mount&tag=dario0b1-20)
+- **Slim USB-C power cable / in-wall power kit:** [shop on Amazon](https://www.amazon.com/s?k=in+wall+power+cable+kit+tablet&tag=dario0b1-20)
+- **Adhesive or screw wall mount:** [shop on Amazon](https://www.amazon.com/s?k=tablet+wall+mount+adhesive&tag=dario0b1-20)
 
 <sub>Some links may be affiliate links; buying through them supports the project at no extra cost to you.</sub>
 
